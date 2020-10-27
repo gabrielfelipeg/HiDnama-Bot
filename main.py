@@ -16,41 +16,37 @@ async def on_message(message):
     if message.content.startswith('$dnama'):
         await message.channel.send(':craig:' + message.content[6:])
 
-def craig_in_members(members):
-    for mnb in members:
-        if mnb.name == 'craig': 
-            return 1
-    return 0
-
 async def nmb_of_mamacos():
     chan_to_send = None
     for chan in client.guilds[0].text_channels:
         if chan.name == 'plebe':
             chan_to_send = chan
             break
-    actual_voice_channel_str = None
+    actual_voice_channel = None
 
     while True:
         msg = ""
 
+
         nmb_of_chan = client.guilds[0].voice_channels
-        nmb_of_chan.sort(reverse=True, key=lambda chan: len(chan.members)- craig_in_members(chan.members))
+        nmb_of_chan.sort(reverse=True, key=lambda chan: len(chan.members))
 
         for chan in client.guilds[0].voice_channels:
             msg += chan.name + " tem " + str(len(chan.members)) + " mamacos.\n"
 
         print(msg)
         
+        # apenas craig na sala
+        if actual_voice_channel is not None and len(actual_voice_channel.members) == 1:
+            await chan_to_send.send(':craig: sair ' + actual_voice_channel.name)
+
         print(nmb_of_chan[0].members)
         if len(nmb_of_chan[0].members) > 0: 
-            if actual_voice_channel_str is not None: continue
-            #await chan_to_send.send(':craig: sair ' + actual_voice_channel_str)
+            if actual_voice_channel is not None: continue
             await chan_to_send.send(':craig: entrar ' + nmb_of_chan[0].name)
-            actual_voice_channel_str = nmb_of_chan[0].name
-        elif actual_voice_channel_str is not None:
-            await chan_to_send.send(':craig: sair ' + actual_voice_channel_str)
+            actual_voice_channel = nmb_of_chan[0]
 
-        await asyncio.sleep(15)
+        await asyncio.sleep(1800)
 
 @client.event
 async def on_ready():
