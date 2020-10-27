@@ -1,8 +1,10 @@
 import discord
 from discord.ext import tasks
 import asyncio
+from modules import meme_songs
 
 client = discord.Client()
+meme_song_list = []
 
 @client.event
 async def on_message(message):
@@ -54,8 +56,16 @@ async def nmb_of_mamacos():
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('Pai ta on como {0.user}'.format(client))
     await nmb_of_mamacos()
 
-with open('token.key') as token:
-    client.run(token.read())
+def main():
+    print("Downloading meme songs...")
+    meme_song_list = meme_songs.try_download()
+    print("Download finish!")
+    print('Starting bot...')
+    with open('token.key') as token:
+            client.run(token.read())
+
+if __name__ == '__main__':
+    main()
