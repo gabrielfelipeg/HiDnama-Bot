@@ -2,6 +2,7 @@ import discord
 from discord.ext import tasks
 import asyncio
 from modules import meme_songs
+import random
 
 client = discord.Client()
 meme_song_list = []
@@ -38,15 +39,20 @@ async def nmb_of_mamacos():
 
         print(msg)
         
-        # apenas craig na sala
-        if actual_voice_channel is not None and len(actual_voice_channel.members) == 1:
-            await chan_to_send.send(':craig: sair ' + actual_voice_channel.name)
+        if len(nmb_of_chan[0].members) > 0:
 
-        print(nmb_of_chan[0].members)
-        if len(nmb_of_chan[0].members) > 0: 
-            if actual_voice_channel is not None: continue
-            await chan_to_send.send(':craig: entrar ' + nmb_of_chan[0].name)
-            actual_voice_channel = nmb_of_chan[0]
+            print(nmb_of_chan[0].name)
+            vc = await nmb_of_chan[0].connect()
+            choosen_audio = meme_song_list[random.randint(0, len(meme_song_list) - 1)]
+            print(choosen_audio)
+            audio_s = discord.FFmpegPCMAudio(choosen_audio)
+            vc.play(audio_s)
+            
+            while vc.is_playing():
+                await asyncio.sleep(1)
+            # disconnect after the player has finished
+            vc.stop()
+            await vc.disconnect()
 
         await asyncio.sleep(1800)
 
@@ -56,6 +62,7 @@ async def on_ready():
     await nmb_of_mamacos()
 
 def main():
+    global meme_song_list
     print("Downloading meme songs...")
     meme_song_list = meme_songs.try_download()
     print("Download finish!")
