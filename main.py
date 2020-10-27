@@ -5,10 +5,6 @@ import asyncio
 client = discord.Client()
 
 @client.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-
-@client.event
 async def on_message(message):
     if message.author == client.user and message.content.startswith(':craig:'):
         await message.delete()
@@ -20,21 +16,45 @@ async def on_message(message):
     if message.content.startswith('$dnama'):
         await message.channel.send(':craig:' + message.content[6:])
 
+def craig_in_members(members):
+    for mnb in members:
+        if mnb.name == 'craig': 
+            return 1
+    return 0
+
 async def nmb_of_mamacos():
+    chan_to_send = None
+    for chan in client.guilds[0].text_channels:
+        if chan.name == 'plebe':
+            chan_to_send = chan
+            break
+    actual_voice_channel_str = None
+
     while True:
-        chan_to_send = None
-        for text_chan in client.guilds[0].text_channels:
-            if text_chan.name == 'plebe':
-                chan_to_send = text_chan
-                break
         msg = ""
+
+        nmb_of_chan = client.guilds[0].voice_channels
+        nmb_of_chan.sort(reverse=True, key=lambda chan: len(chan.members)- craig_in_members(chan.members))
+
         for chan in client.guilds[0].voice_channels:
             msg += chan.name + " tem " + str(len(chan.members)) + " mamacos.\n"
-        await chan_to_send.send(msg)
-        await asyncio.sleep(60)
+
+        print(msg)
+        
+        print(nmb_of_chan[0].members)
+        if len(nmb_of_chan[0].members) > 0: 
+            if actual_voice_channel_str is not None: continue
+            #await chan_to_send.send(':craig: sair ' + actual_voice_channel_str)
+            await chan_to_send.send(':craig: entrar ' + nmb_of_chan[0].name)
+            actual_voice_channel_str = nmb_of_chan[0].name
+        elif actual_voice_channel_str is not None:
+            await chan_to_send.send(':craig: sair ' + actual_voice_channel_str)
+
+        await asyncio.sleep(15)
 
 @client.event
 async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
     await nmb_of_mamacos()
 
 with open('token.key') as token:
