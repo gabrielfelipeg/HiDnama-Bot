@@ -22,7 +22,7 @@ build:
 	@echo "Now, Create the follow files:\n"
 	@echo "credentials.json: with credentials to use google drive api"
 	@echo "token.key: with the token of discord bot"
-	@echo "After Create the files, execute: make run"
+	@echo "After Create the files, execute: make run\n"
 
 run:
 	${PYTHON} main.py
