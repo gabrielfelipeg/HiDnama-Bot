@@ -19,7 +19,7 @@ def split_audio(audio_path, output_path, min_silence_len=500, silence_thresh=-42
         considered silence. default: -42dBFS
     """
 
-    file_name = os.path.basename(audio_path).split('.')[0]
+    file_name = os.path.basename(audio_path).split('.').pop()
     logger.info(f"Reading file {file_name}...")
     audio = AudioSegment.from_file(audio_path)
 
