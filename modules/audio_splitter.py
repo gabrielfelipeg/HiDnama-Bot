@@ -2,6 +2,10 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import os
 import time
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 def split_audio(audio_path, output_path, min_silence_len=500, silence_thresh=-42):
     """
@@ -16,7 +20,7 @@ def split_audio(audio_path, output_path, min_silence_len=500, silence_thresh=-42
     """
 
     file_name = os.path.basename(audio_path).split('.')[0]
-    print(f"Reading file {file_name}...")
+    logger.info(f"Reading file {file_name}...")
     audio = AudioSegment.from_file(audio_path)
 
     init_time = time.time()
@@ -26,12 +30,15 @@ def split_audio(audio_path, output_path, min_silence_len=500, silence_thresh=-42
         silence_thresh = silence_thresh,
         keep_silence = False
     )
-    print(f"Process time: {time.time()-init_time}")
-    print(f"Number of chunks: {len(chunks)}")
+    logger.info(f"Process time: {time.time()-init_time}")
+    logger.info(f"Number of chunks: {len(chunks)}")
 
     for i, chunk in enumerate(chunks):
-        print(f"Exporting chunk {i}.")
+        logger.info(f"Exporting chunk {i}.")
         chunk.export(
             os.path.join(output_path, f"{file_name}_{i}.mp3"),
             format = "mp3"
         )
+
+if __name__ == '__main__':
+    logging.basicConfig()
