@@ -1,8 +1,9 @@
-from pydub import AudioSegment
-from pydub.silence import split_on_silence
 import os
 import time
 import logging
+
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
