@@ -63,7 +63,6 @@ async def nmb_of_mamacos():
 @client.event
 async def on_ready():
     print('Pai ta on como {0.user}'.format(client))
-    print(meme_songs.songs)
     await nmb_of_mamacos()
 
 
