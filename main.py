@@ -4,7 +4,6 @@ import asyncio
 from modules import meme_songs
 import random
 from modules.meme_songs import MemeSongs
-import threading
 
 client = discord.Client()
 meme_songs = MemeSongs()
