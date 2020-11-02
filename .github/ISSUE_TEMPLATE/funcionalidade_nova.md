@@ -21,3 +21,4 @@ assignees: ""
 **Contexto adicional:**
 
 <!-- Adicione qualquer informação adicional que achar necessária. Imagens, links etc -->
+- [Guia De Contribuições](https://github.com/gabrielfelipeg/HiDnama-Bot/wiki/Workflow-de-Contribui%C3%A7%C3%B5es)
