@@ -29,3 +29,4 @@ Passos para reproduzir o comportamento indesejado:
 **Contexto adicional**
 
 <!-- Adicione qualquer outro contexto ao problema reportado aqui -->
+- [Guia De Contribuições](https://github.com/gabrielfelipeg/HiDnama-Bot/wiki/Workflow-de-Contribui%C3%A7%C3%B5es)
