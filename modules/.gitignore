@@ -9,7 +9,7 @@ __pycache__/
 *$py.class
 
 #log file
-./logs.log
+*.log
 
 # C extensions
 *.so
