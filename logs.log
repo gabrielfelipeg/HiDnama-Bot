@@ -2,3 +2,11 @@
 2020-12-13T14:36:37+0000|WARNING|discord.client.__init__|PyNaCl is not installed, voice will NOT be supported
 2020-12-13T14:36:37+0000|DEBUG|discord.client.event|on_message has successfully been registered as an event
 2020-12-13T14:36:37+0000|DEBUG|discord.client.event|on_ready has successfully been registered as an event
+2020-12-13T15:00:30+0000|DEBUG|asyncio.__init__|Using selector: EpollSelector
+2020-12-13T15:00:30+0000|WARNING|discord.client.__init__|PyNaCl is not installed, voice will NOT be supported
+2020-12-13T15:00:30+0000|DEBUG|discord.client.event|on_message has successfully been registered as an event
+2020-12-13T15:00:30+0000|DEBUG|discord.client.event|on_ready has successfully been registered as an event
+2020-12-13T15:02:49+0000|DEBUG|asyncio.__init__|Using selector: EpollSelector
+2020-12-13T15:02:49+0000|WARNING|discord.client.__init__|PyNaCl is not installed, voice will NOT be supported
+2020-12-13T15:02:49+0000|DEBUG|discord.client.event|on_message has successfully been registered as an event
+2020-12-13T15:02:49+0000|DEBUG|discord.client.event|on_ready has successfully been registered as an event
