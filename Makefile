@@ -4,11 +4,11 @@ PYTHON = python3
 PIP = pip3
 UNAME_S := $(shell uname -s) 
 ifeq ($(UNAME_S), Darwin) 
-MAC_INSTALL = brew install ffmpeg
+MAC_INSTALL = brew install ffmpeg gpg git-secret
 endif
 ifeq ($(UNAME_S), Linux) 
 LINUX_UPDATE = sudo apt-get update
-LINUX_INSTALL = sudo apt install python-pip ffmpeg
+LINUX_INSTALL = sudo apt install python-pip ffmpeg gpg git-secret
 endif
 
 
