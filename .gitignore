@@ -3,3 +3,4 @@ credentials.json
 token.pickle
 .idea/*
 workspace.code*
+.gitsecret/keys/random_seed
