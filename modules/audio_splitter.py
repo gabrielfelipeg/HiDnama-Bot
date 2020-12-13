@@ -10,14 +10,18 @@ logger.setLevel(logging.INFO)
 
 def split_audio(audio_path, output_path, min_silence_len=500, silence_thresh=-42):
     """
-    split an audio into chunks by a silence threshold
+    Split an audio into chunks by a silence threshold. 
+    
+    Keyword arguments:
+        audio_path -- path to audio (any format that ffmpeg supports)
+        output_path -- chunks output path
+        min_silence_len -- (in ms) minimum length of a silence to be used for
+            a split. (default: 500ms)
+        silence_thresh -- (in dBFS) anything quieter than this will be
+            considered silence. (default: -42dBFS)
 
-    :param audio_path: path to audio (any format that ffmpeg supports)
-    :param output_path: chunks output path
-    :param min_silence_len: (in ms) minimum length of a silence to be used for
-        a split. default: 500ms
-    :param silence_thresh: (in dBFS) anything quieter than this will be
-        considered silence. default: -42dBFS
+    Return:
+        None
     """
 
     file_name = os.path.basename(audio_path).split('.').pop()

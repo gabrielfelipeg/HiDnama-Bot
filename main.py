@@ -11,6 +11,15 @@ meme_songs = MemeSongs()
 
 @client.event
 async def on_message(message):
+    """
+    Method that triggers when bot receives any message. 
+    
+    Keyword arguments:
+        message -- Message that triggers the event.
+
+    Return:
+        None
+    """
     if message.author == client.user and message.content.startswith(':craig:'):
         await message.delete()
         return
@@ -23,6 +32,16 @@ async def on_message(message):
 
 
 async def nmb_of_mamacos():
+    """
+    Bot calculate the number of members on plebe channel and
+    send random meme songs when the channel have at least one member. 
+    
+    Keyword arguments:
+        None
+
+    Return:
+        None
+    """
     chan_to_send = None
     for chan in client.guilds[0].text_channels:
         if chan.name == 'plebe':
@@ -62,6 +81,15 @@ async def nmb_of_mamacos():
 
 @client.event
 async def on_ready():
+    """
+    Method called when discord bot finished the setup methods.
+    
+    Keyword arguments:
+        None
+
+    Return:
+        None
+    """
     print('Pai ta on como {0.user}'.format(client))
     await nmb_of_mamacos()
 
