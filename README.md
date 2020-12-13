@@ -24,9 +24,13 @@ The logger uses the following message format:
 '%(asctime)s|%(levelname)s|%(name)s.%(funcName)s|%(message)s',
 ```
 asctime - ISO_8601
+
 levelname - nível do log
+
 name - nome do pacote seguido do módulo.
+
 funcName - nome da função que originou o log
+
 message - mensagem de log.
 
 ## Meta
