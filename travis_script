@@ -9,5 +9,5 @@ echo $GPG_PRIVATE_KEY | tr ',' '\n' > ./private_key.gpg
 gpg --import ./private_key.gpg
 # Reveal secrets
 git secret reveal
-
+ls secrets
 make build
