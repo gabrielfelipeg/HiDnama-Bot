@@ -4,10 +4,13 @@ echo "deb https://dl.bintray.com/sobolevn/deb git-secret main" | sudo tee -a /et
 wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt-key add -
 sudo apt-get update && sudo apt-get install git-secret
 
-echo $GPG_PRIVATE_KEY | tr ',' '\n' > ./private_key.gpg
+echo $GPG_PRIVATE_KEY | tr ',' '\n'  | tr '!' ' ' > ./private_key.gpg
 # Import private key
 gpg --import ./private_key.gpg
+ls
+ls secrets/
+
 # Reveal secrets
 git secret reveal
-ls secrets
+
 make build
