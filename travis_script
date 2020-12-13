@@ -7,8 +7,6 @@ sudo apt-get update && sudo apt-get install git-secret
 echo $GPG_PRIVATE_KEY | tr ',' '\n'  | tr '!' ' ' > ./private_key.gpg
 # Import private key
 gpg --import ./private_key.gpg
-ls
-ls secrets/
 
 # Reveal secrets
 git secret reveal
