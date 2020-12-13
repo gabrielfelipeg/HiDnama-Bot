@@ -15,5 +15,22 @@
 
 - audio_splitter: Split an audio into chunks by a silence threshold. It is used for separating sentences from the input audio.
 
+### Logger
+
+Specifies the basic log standard for all modules using the python logging package.
+
+The logger uses the following message format:
+```python
+'%(asctime)s|%(levelname)s|%(name)s.%(funcName)s|%(message)s',
+```
+asctime - ISO_8601
+
+levelname - nível do log
+
+name - nome do pacote seguido do módulo.
+
+funcName - nome da função que originou o log
+
+message - mensagem de log.
 
 ## Meta

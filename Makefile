@@ -18,7 +18,7 @@ build:
 	$(PIP) install --requirement requirements.txt
 
 
-	@echo "\n\nAll external tools has been installed!" 
+	@echo "\n\nAll external tools has been installed!"
 	@echo "Now, Create the follow files:\n"
 	@echo "credentials.json: with credentials to use google drive api"
 	@echo "token.key: with the token of discord bot"
