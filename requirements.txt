@@ -4,3 +4,5 @@ ffmpeg
 google-api-python-client 
 google-auth-httplib2 	 
 google-auth-oauthlib
+pydub==0.24.1
+pytest==6.2.0

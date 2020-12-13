@@ -2,3 +2,4 @@ token.key
 credentials.json
 token.pickle
 .idea/*
+workspace.code*
