@@ -7,9 +7,9 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.http import MediaIoBaseDownload
 import threading
+import logging
 
-
-class MemeSongs(object):
+class MemeSongs:
     """
     Store, load, download and handle MemeSongs.
     """
@@ -39,8 +39,8 @@ class MemeSongs(object):
         Return:
             None
         """   
-        print("Downloading meme songs...")
-        downloader = threading.Thread(target=self.download, daemon=True)
+        logging.info("Downloading memes...")
+        downloader = threading.Thread(target=self._download, daemon=True)
         downloader.start()
 
     def _connect_googledrive(self):
@@ -54,6 +54,7 @@ class MemeSongs(object):
         Return:
             service -- The connection with GoogleDrive API.
         """
+        logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
         SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
         creds = None
         if os.path.exists('token.pickle'):
@@ -72,7 +73,7 @@ class MemeSongs(object):
         service = build('drive', 'v3', credentials=creds)
         return service
 
-    def download(self):
+    def _download(self):
         """
         Use a GoogleDrive API connection to download
         memes songs stored there.
@@ -108,8 +109,8 @@ class MemeSongs(object):
                         done = False
                         while not done:
                             status, done = downloader.next_chunk()
-                            print("Song {} Download {}%.".format(
+                            logging.info("Song {} Download {}%.".format(
                                 file_name, int(status.progress() * 100)))
 
                 self.songs.append(song_file_path)
-        print("Download finish!")
+        logging.info("Download finish!")
