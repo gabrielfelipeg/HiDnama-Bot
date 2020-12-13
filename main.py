@@ -1,12 +1,14 @@
 import discord
 from discord.ext import tasks
 import asyncio
-from modules import meme_songs
 import random
 from modules.meme_songs import MemeSongs
+from modules.logger import Logger
+from modules.audio_splitter import AudioSplitter
+import logging
 
 client = discord.Client()
-meme_songs = MemeSongs()
+meme_songs = None
 
 
 @client.event
@@ -24,7 +26,7 @@ async def on_message(message):
         await message.delete()
         return
     if 'Craig#1289' == '{0.author}'.format(message):
-        print(message.content.split(' ')[-1][:-1])
+        logging.info(message.content.split(' ')[-1][:-1])
         await message.delete()
         return
     if message.content.startswith('$dnama'):
@@ -58,15 +60,15 @@ async def nmb_of_mamacos():
         for chan in client.guilds[0].voice_channels:
             msg += chan.name + " tem " + str(len(chan.members)) + " mamacos.\n"
 
-        print(msg)
+        logging.info(msg)
 
         if len(nmb_of_chan[0].members) > 0:
 
-            print(nmb_of_chan[0].name)
+            logging.info(nmb_of_chan[0].name)
             vc = await nmb_of_chan[0].connect()
             choosen_audio = meme_songs.songs[random.randint(
                 0, len(meme_songs.songs) - 1)]
-            print(choosen_audio)
+            logging.info(choosen_audio)
             audio_s = discord.FFmpegPCMAudio(choosen_audio)
             vc.play(audio_s)
 
@@ -90,16 +92,20 @@ async def on_ready():
     Return:
         None
     """
-    print('Pai ta on como {0.user}'.format(client))
+    logging.info('Pai ta on como {0.user}'.format(client))
     await nmb_of_mamacos()
 
 
 def main():
-    print('Starting bot...')
+    Logger()
+    logging.info('Starting bot...')
 
+    global meme_songs
+
+    meme_songs = MemeSongs()
+    
     with open('token.key') as token:
         client.run(token.read())
-
 
 if __name__ == '__main__':
     main()

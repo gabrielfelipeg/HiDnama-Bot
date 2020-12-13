@@ -146,12 +146,3 @@ dmypy.json
 .prof
 
 # End of https://www.toptal.com/developers/gitignore/api/python
-
-
-token.key
-credentials.json
-token.pickle
-.idea/*
-workspace.code*
-.pytest_cache/
-*.log

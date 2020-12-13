@@ -1,7 +1,16 @@
 .DEFAULT: help
 
 PYTHON = python3
-PIP = pip
+PIP = pip3
+UNAME_S := $(shell uname -s) 
+ifeq ($(UNAME_S), Darwin) 
+MAC_INSTALL = brew install ffmpeg
+endif
+ifeq ($(UNAME_S), Linux) 
+LINUX_UPDATE = sudo apt-get update
+LINUX_INSTALL = sudo apt install python-pip ffmpeg
+endif
+
 
 help:
 	@echo "uso: make [build | run | help]"
@@ -10,13 +19,11 @@ help:
 
 build:
 	@echo "Build started"
-
-	sudo apt-get update
-	sudo apt install python-pip
-
+	$(MAC_INSTALL)
+	$(LINUX_UPDATE)
+	$(LINUX_INSTALL)
 	$(PIP) install --upgrade pip
 	$(PIP) install --requirement requirements.txt
-
 
 	@echo "\n\nAll external tools has been installed!"
 	@echo "Now, Create the follow files:\n"
