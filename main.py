@@ -104,7 +104,7 @@ def main():
 
     meme_songs = MemeSongs()
     
-    with open('token.key') as token:
+    with open('secrets/token.key') as token:
         client.run(token.read())
 
 if __name__ == '__main__':
